@@ -27,7 +27,7 @@ export function SectionHeading({ title, description }: Props) {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8, ease, delay: 0.2 }}
-          className="mt-5 max-w-xl text-base leading-relaxed text-muted sm:text-lg"
+          className="mt-5 max-w-xl text-base leading-relaxed text-pretty text-muted sm:text-lg"
         >
           {description}
         </motion.p>

@@ -75,19 +75,6 @@ export const ChevronRight = (p: P) => (
   </svg>
 )
 
-export const CopyIcon = (p: P) => (
-  <svg {...base(p)}>
-    <rect x="9" y="9" width="12" height="12" rx="2.5" />
-    <path d="M5 15H4a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v1" />
-  </svg>
-)
-
-export const CheckIcon = (p: P) => (
-  <svg {...base(p)}>
-    <path d="M20 6 9 17l-5-5" />
-  </svg>
-)
-
 export const SparkIcon = (p: P) => (
   <svg {...base(p)} fill="currentColor" stroke="none">
     <path d="M12 2c.4 4.6 2.4 8.1 10 10-7.6 1.9-9.6 5.4-10 10-.4-4.6-2.4-8.1-10-10 7.6-1.9 9.6-5.4 10-10Z" />

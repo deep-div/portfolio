@@ -1,8 +1,5 @@
 @import "tailwindcss";
 
-/* Stacked sticky project cards only where there is room for them. */
-@custom-variant stack (@media (min-width: 1024px) and (min-height: 720px));
-
 @theme {
   --font-sans: "Inter Variable", ui-sans-serif, system-ui, sans-serif;
   --font-serif: "Instrument Serif", ui-serif, Georgia, serif;
