@@ -31,10 +31,6 @@ const titleWord: Variants = {
   hidden: { y: '110%' },
   show: { y: 0, transition: { duration: 0.9, ease } },
 }
-const rule: Variants = {
-  hidden: { scaleX: 0 },
-  show: { scaleX: 1, transition: { duration: 0.9, ease } },
-}
 const tagList: Variants = {
   hidden: {},
   show: { transition: { staggerChildren: 0.05 } },
@@ -160,8 +156,6 @@ function FeaturedProject({ project, index }: { project: Project; index: number }
         viewport={{ once: true, margin: '0px 0px -15% 0px' }}
         className="min-w-0 lg:col-span-4"
       >
-        <motion.span variants={rule} aria-hidden className="mb-6 block h-px w-12 origin-left bg-line-strong" />
-
         <motion.h3
           variants={titleWords}
           aria-label={project.title}
