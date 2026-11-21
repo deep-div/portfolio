@@ -11,6 +11,7 @@ import {
 import { useEffect, useRef, useState, type PointerEvent } from 'react'
 import { profile } from '../data/content'
 import { useScrollTo } from '../lib/smooth-scroll'
+import { DotGrid } from './ui/DotGrid'
 import { GithubIcon, LinkedinIcon, MailIcon } from './ui/Icons'
 import { ease } from './ui/Reveal'
 
@@ -52,7 +53,7 @@ function RotatingWord({ words }: { words: string[] }) {
   }, [words.length])
 
   return (
-    <motion.span layout transition={{ duration: 0.5, ease }} className="relative inline-flex overflow-hidden align-bottom">
+    <motion.span layout transition={{ duration: 0.5, ease }} className="relative inline-flex overflow-hidden align-baseline">
       <AnimatePresence mode="popLayout" initial={false}>
         <motion.span
           key={words[i]}
@@ -60,7 +61,9 @@ function RotatingWord({ words }: { words: string[] }) {
           animate={{ y: 0, opacity: 1, filter: 'blur(0px)' }}
           exit={{ y: '-100%', opacity: 0, filter: 'blur(6px)' }}
           transition={{ duration: 0.55, ease }}
-          className="font-serif text-[1.18em] leading-none whitespace-nowrap text-fg italic"
+          // Bottom padding leaves room for descenders (g, p, y) inside the clipping box;
+          // the wrapper aligns on the text baseline, so the padding doesn't shift the word.
+          className="font-display pb-[0.2em] leading-none font-semibold tracking-[-0.015em] whitespace-nowrap text-fg"
         >
           {words[i]}
         </motion.span>
@@ -79,6 +82,7 @@ function HeroBackground({ mx, my }: { mx: MotionValue<number>; my: MotionValue<n
       <div className="absolute top-[8%] left-[12%] size-[38vmax] animate-aurora rounded-full bg-glow-1 blur-[110px]" />
       <div className="absolute top-[30%] right-[6%] size-[32vmax] animate-aurora rounded-full bg-glow-2 blur-[120px] [animation-delay:-6s]" />
       <div className="absolute bottom-[-10%] left-[35%] size-[30vmax] animate-aurora rounded-full bg-glow-3 blur-[120px] [animation-delay:-12s]" />
+      <DotGrid className="[mask-image:radial-gradient(ellipse_75%_65%_at_50%_45%,black_35%,transparent_100%)]" />
       <motion.div className="absolute inset-0" style={{ background: spotlight }} />
       <div className="absolute inset-x-0 bottom-0 h-48 bg-gradient-to-b from-transparent to-bg" />
     </div>

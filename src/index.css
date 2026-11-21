@@ -6,6 +6,7 @@
 @theme {
   --font-sans: "Inter Variable", ui-sans-serif, system-ui, sans-serif;
   --font-serif: "Instrument Serif", ui-serif, Georgia, serif;
+  --font-display: "Plus Jakarta Sans Variable", ui-sans-serif, system-ui, sans-serif;
 
   /* Colour tokens — real values come from the [data-theme] blocks below. */
   --color-bg: var(--t-bg);

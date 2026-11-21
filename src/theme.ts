@@ -10,14 +10,14 @@
  *
  * Colours for each theme are defined in src/index.css under [data-theme="…"].
  */
-export const THEME: ThemeName = 'sage'
+export const THEME: ThemeName = 'minimal-light'
 
 export type ThemeName = 'cream-editorial' | 'minimal-light' | 'wine-rose' | 'sage' | 'midnight'
 
 /** Browser UI colour (mobile address bar) for each theme. */
 export const themeColor: Record<ThemeName, string> = {
   'cream-editorial': '#f5f1ea',
-  'minimal-light': '#fafafa',
+  'minimal-light': '#f4f4f2',
   'wine-rose': '#faf5f3',
   sage: '#f3f4ef',
   midnight: '#07070a',
