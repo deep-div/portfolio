@@ -103,7 +103,7 @@ export function About() {
             </>
           }
         />
-        <div className="grid gap-14 lg:grid-cols-12 lg:items-start lg:gap-16">
+        <div className="grid gap-14 lg:grid-cols-12 lg:items-center lg:gap-16">
           <div className="lg:col-span-8">
             <Statement text={profile.about} />
           </div>
