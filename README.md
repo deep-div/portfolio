@@ -25,8 +25,6 @@ Theme colours live in `src/index.css` under `[data-theme="…"]`.
 Everything you'll want to change is in [`src/data/content.ts`](src/data/content.ts):
 name, role, about text, email, social links, projects and experience. Items marked `TODO` are placeholders.
 
-Put your resume at `public/resume.pdf`.
-
 ## Add a project
 
 1. Create `public/media/<slug>/` with a walkthrough video (`<slug>.mp4`) and screenshots.

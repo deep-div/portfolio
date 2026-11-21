@@ -11,8 +11,7 @@ import {
 import { useEffect, useRef, useState, type PointerEvent } from 'react'
 import { profile } from '../data/content'
 import { useScrollTo } from '../lib/smooth-scroll'
-import { ArrowDown, DownloadIcon, GithubIcon, LinkedinIcon, MailIcon } from './ui/Icons'
-import { Magnetic } from './ui/Magnetic'
+import { GithubIcon, LinkedinIcon, MailIcon } from './ui/Icons'
 import { ease } from './ui/Reveal'
 
 const GRADIENT = 'var(--t-gradient-text)'
@@ -119,19 +118,6 @@ export function Hero() {
       <HeroBackground mx={mx} my={my} />
 
       <motion.div style={{ y, opacity, scale }} className="container-x relative z-10 flex flex-col items-center text-center">
-        {profile.available && (
-          <motion.div
-            {...item(0.2)}
-            className="mb-8 inline-flex items-center gap-2.5 rounded-full border border-line bg-wash py-1.5 pr-4 pl-3 text-xs font-medium text-muted backdrop-blur-md sm:text-sm"
-          >
-            <span className="relative flex size-2">
-              <span className="absolute inline-flex size-full animate-ping-slow rounded-full bg-emerald-500 opacity-70" />
-              <span className="relative inline-flex size-2 rounded-full bg-emerald-500" />
-            </span>
-            Available for new opportunities
-          </motion.div>
-        )}
-
         <h1 className="text-[clamp(3rem,10vw,8rem)] leading-[0.95] font-semibold tracking-[-0.045em]">
           <motion.span {...item(0.35)} className="block text-[0.42em] font-medium tracking-[-0.02em] text-muted">
             Hi, I&apos;m
@@ -145,29 +131,7 @@ export function Hero() {
           {profile.role} crafting <RotatingWord words={profile.rotatingWords} />
         </motion.p>
 
-        <motion.div {...item(1.1)} className="mt-10 flex flex-wrap items-center justify-center gap-3 sm:gap-4">
-          <Magnetic>
-            <button
-              onClick={() => scrollTo('projects')}
-              className="group inline-flex h-12 cursor-pointer items-center gap-2 rounded-full bg-fg px-6 text-sm font-semibold text-bg shadow-button transition-[box-shadow,transform] duration-300 hover:shadow-button-hover active:scale-[0.97]"
-            >
-              View my work
-              <ArrowDown className="transition-transform duration-300 group-hover:translate-y-0.5" />
-            </button>
-          </Magnetic>
-          <Magnetic>
-            <a
-              href={profile.resumeUrl}
-              download
-              className="group inline-flex h-12 items-center gap-2 rounded-full border border-line-strong bg-wash px-6 text-sm font-semibold text-fg backdrop-blur-md transition-colors duration-300 hover:border-faint hover:bg-wash-strong active:scale-[0.97]"
-            >
-              Download resume
-              <DownloadIcon className="transition-transform duration-300 group-hover:translate-y-0.5" />
-            </a>
-          </Magnetic>
-        </motion.div>
-
-        <motion.div {...item(1.25)} className="mt-10 flex items-center gap-2">
+        <motion.div {...item(1.1)} className="mt-10 flex items-center gap-2">
           {[
             { href: profile.socials.github, label: 'GitHub', Icon: GithubIcon },
             { href: profile.socials.linkedin, label: 'LinkedIn', Icon: LinkedinIcon },

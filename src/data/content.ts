@@ -34,14 +34,12 @@ export interface Experience {
 
 export const profile = {
   name: 'Divyanshu', // TODO: confirm full name
-  role: 'Full-Stack Developer', // TODO: confirm title
-  rotatingWords: ['fast web apps', 'real-time products', 'data-rich dashboards', 'clean interfaces'],
-  available: true,
-  email: 'you@example.com', // TODO: your contact email
-  resumeUrl: '/resume.pdf', // TODO: put resume.pdf in /public
+  role: 'Senior AI Engineer',
+  rotatingWords: ['LLM-powered products', 'intelligent agents', 'real-time AI systems', 'production ML pipelines'],
+  email: '3041div@gmail.com',
   socials: {
-    github: 'https://github.com/deep-div', // TODO: confirm
-    linkedin: 'https://www.linkedin.com/in/your-handle', // TODO
+    github: 'https://github.com/deep-div',
+    linkedin: 'https://www.linkedin.com/in/deep-div/',
   },
   about:
     'I design and build web products end to end — from data-heavy finance tools to real-time chat and analytics platforms. I care about interfaces that feel fast, code that stays simple, and shipping things people actually use.', // TODO: personalise

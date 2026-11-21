@@ -1,7 +1,7 @@
 import { AnimatePresence, motion } from 'motion/react'
 import { useState } from 'react'
 import { profile } from '../data/content'
-import { ArrowUpRight, CheckIcon, CopyIcon, DownloadIcon, GithubIcon, LinkedinIcon, SparkIcon } from './ui/Icons'
+import { ArrowUpRight, CheckIcon, CopyIcon, GithubIcon, LinkedinIcon, SparkIcon } from './ui/Icons'
 import { Magnetic } from './ui/Magnetic'
 import { Reveal, ease } from './ui/Reveal'
 import { Accent } from './ui/SectionHeading'
@@ -114,16 +114,14 @@ export function Contact() {
 
         <Reveal delay={0.28} className="mt-12 flex flex-wrap items-center justify-center gap-x-8 gap-y-3 text-sm">
           {[
-            { href: profile.socials.github, label: 'GitHub', Icon: GithubIcon, external: true },
-            { href: profile.socials.linkedin, label: 'LinkedIn', Icon: LinkedinIcon, external: true },
-            { href: profile.resumeUrl, label: 'Resume', Icon: DownloadIcon, external: false },
-          ].map(({ href, label, Icon, external }) => (
+            { href: profile.socials.github, label: 'GitHub', Icon: GithubIcon },
+            { href: profile.socials.linkedin, label: 'LinkedIn', Icon: LinkedinIcon },
+          ].map(({ href, label, Icon }) => (
             <a
               key={label}
               href={href}
-              target={external ? '_blank' : undefined}
+              target="_blank"
               rel="noreferrer"
-              download={external ? undefined : true}
               className="group inline-flex items-center gap-2 text-muted transition-colors hover:text-fg"
             >
               <Icon width={16} height={16} />

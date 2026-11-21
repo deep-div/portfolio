@@ -39,21 +39,9 @@ export const ArrowUpRight = (p: P) => (
   </svg>
 )
 
-export const ArrowDown = (p: P) => (
-  <svg {...base(p)}>
-    <path d="M12 5v14M6 13l6 6 6-6" />
-  </svg>
-)
-
 export const ArrowUp = (p: P) => (
   <svg {...base(p)}>
     <path d="M12 19V5M6 11l6-6 6 6" />
-  </svg>
-)
-
-export const DownloadIcon = (p: P) => (
-  <svg {...base(p)}>
-    <path d="M12 4v11M7 10l5 5 5-5M5 20h14" />
   </svg>
 )
 
