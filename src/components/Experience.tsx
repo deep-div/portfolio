@@ -14,8 +14,6 @@ export function Experience() {
     <section id="experience" className="relative pt-28 pb-16 sm:pt-36 sm:pb-20">
       <div className="container-x">
         <SectionHeading
-          index="03"
-          label="Experience"
           title={
             <>
               Where I&apos;ve <Accent>worked</Accent>

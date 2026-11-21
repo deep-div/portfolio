@@ -46,7 +46,7 @@ export function About() {
   return (
     <section id="about" className="relative py-28 sm:py-40">
       <div className="container-x">
-        <SectionHeading index="01" label="About" title={<>Building products that <Accent>feel</Accent> effortless</>} />
+        <SectionHeading title={<>Building products that <Accent>feel</Accent> effortless</>} />
 
         <div className="grid gap-12 lg:grid-cols-12 lg:gap-16">
           <div className="lg:col-span-8">

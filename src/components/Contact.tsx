@@ -1,9 +1,7 @@
-import { AnimatePresence, motion } from 'motion/react'
-import { useState } from 'react'
 import { profile } from '../data/content'
-import { ArrowUpRight, CheckIcon, CopyIcon, GithubIcon, LinkedinIcon, SparkIcon } from './ui/Icons'
+import { GithubIcon, LinkedinIcon, MailIcon, SparkIcon } from './ui/Icons'
 import { Magnetic } from './ui/Magnetic'
-import { Reveal, ease } from './ui/Reveal'
+import { Reveal } from './ui/Reveal'
 import { Accent } from './ui/SectionHeading'
 
 function Marquee() {
@@ -31,18 +29,6 @@ function Marquee() {
 }
 
 export function Contact() {
-  const [copied, setCopied] = useState(false)
-
-  const copy = async () => {
-    try {
-      await navigator.clipboard.writeText(profile.email)
-      setCopied(true)
-      setTimeout(() => setCopied(false), 1800)
-    } catch {
-      window.location.href = `mailto:${profile.email}`
-    }
-  }
-
   return (
     <section id="contact" className="relative overflow-hidden pt-16 pb-28 sm:pt-24 sm:pb-40">
       <div aria-hidden className="pointer-events-none absolute bottom-[-30%] left-1/2 h-[70%] w-[90%] -translate-x-1/2 rounded-[100%] bg-glow-1 blur-[140px]" />
@@ -50,13 +36,7 @@ export function Contact() {
       <Marquee />
 
       <div className="container-x relative mt-16 flex flex-col items-center text-center sm:mt-24">
-        <Reveal className="mb-6 flex items-center gap-3 text-xs font-medium tracking-[0.2em] text-muted uppercase">
-          <span className="text-gradient font-semibold">04</span>
-          <span className="h-px w-10 bg-line-strong" />
-          Contact
-        </Reveal>
-
-        <Reveal delay={0.05}>
+        <Reveal>
           <h2 className="max-w-4xl text-4xl font-semibold tracking-[-0.04em] text-balance sm:text-6xl lg:text-7xl">
             Have an idea? Let&apos;s make it <Accent>real.</Accent>
           </h2>
@@ -64,72 +44,30 @@ export function Contact() {
 
         <Reveal delay={0.12}>
           <p className="mt-6 max-w-xl text-base text-balance text-muted sm:text-lg">
-            I&apos;m open to full-time roles, freelance projects and interesting collaborations. My inbox is always open.
+            I&apos;m open to full-time roles, freelance projects and interesting collaborations. Reach out wherever suits you.
           </p>
         </Reveal>
 
-        <Reveal delay={0.2} className="mt-10 flex flex-wrap items-center justify-center gap-3">
-          <Magnetic>
-            <a
-              href={`mailto:${profile.email}`}
-              className="group inline-flex h-14 items-center gap-2 rounded-full bg-fg px-7 text-base font-semibold text-bg shadow-button transition-shadow duration-300 hover:shadow-button-hover active:scale-[0.97]"
-            >
-              Say hello
-              <ArrowUpRight className="transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-            </a>
-          </Magnetic>
-
-          <button
-            onClick={copy}
-            className="relative inline-flex h-14 cursor-pointer items-center gap-2.5 rounded-full border border-line-strong bg-wash px-6 text-sm font-medium text-fg backdrop-blur transition-colors hover:bg-wash-strong"
-            aria-label="Copy email address"
-          >
-            <AnimatePresence mode="wait" initial={false}>
-              <motion.span
-                key={copied ? 'ok' : 'copy'}
-                initial={{ opacity: 0, scale: 0.6 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.6 }}
-                transition={{ duration: 0.2, ease }}
-                className={copied ? 'text-emerald-600' : 'text-muted'}
-              >
-                {copied ? <CheckIcon /> : <CopyIcon />}
-              </motion.span>
-            </AnimatePresence>
-            {profile.email}
-            <AnimatePresence>
-              {copied && (
-                <motion.span
-                  initial={{ opacity: 0, y: 6 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: 6 }}
-                  className="absolute -top-9 left-1/2 -translate-x-1/2 rounded-md bg-fg px-2.5 py-1 text-xs font-semibold text-bg"
-                >
-                  Copied!
-                </motion.span>
-              )}
-            </AnimatePresence>
-          </button>
-        </Reveal>
-
-        <Reveal delay={0.28} className="mt-12 flex flex-wrap items-center justify-center gap-x-8 gap-y-3 text-sm">
+        <Reveal delay={0.2} className="mt-10 flex items-center justify-center gap-3 sm:gap-4">
           {[
             { href: profile.socials.github, label: 'GitHub', Icon: GithubIcon },
             { href: profile.socials.linkedin, label: 'LinkedIn', Icon: LinkedinIcon },
+            { href: `mailto:${profile.email}`, label: 'Email', Icon: MailIcon },
           ].map(({ href, label, Icon }) => (
-            <a
-              key={label}
-              href={href}
-              target="_blank"
-              rel="noreferrer"
-              className="group inline-flex items-center gap-2 text-muted transition-colors hover:text-fg"
-            >
-              <Icon width={16} height={16} />
-              <span className="relative">
-                {label}
-                <span className="absolute -bottom-0.5 left-0 h-px w-full origin-right scale-x-0 bg-fg transition-transform duration-300 group-hover:origin-left group-hover:scale-x-100" />
-              </span>
-            </a>
+            <Magnetic key={label}>
+              <a
+                href={href}
+                target={href.startsWith('http') ? '_blank' : undefined}
+                rel="noreferrer"
+                aria-label={label}
+                className="group relative grid size-14 place-items-center rounded-full border border-line-strong bg-wash text-muted backdrop-blur transition-colors duration-300 hover:border-fg hover:bg-fg hover:text-bg sm:size-16"
+              >
+                <Icon width={22} height={22} />
+                <span className="pointer-events-none absolute -bottom-7 text-xs text-muted opacity-0 transition-all duration-300 group-hover:-bottom-8 group-hover:opacity-100">
+                  {label}
+                </span>
+              </a>
+            </Magnetic>
           ))}
         </Reveal>
       </div>
