@@ -42,7 +42,7 @@ export const profile = {
     linkedin: 'https://www.linkedin.com/in/deep-div/',
   },
   about:
-    'I design and build web products end to end — from data-heavy finance tools to real-time chat and analytics platforms. I care about interfaces that feel fast, code that stays simple, and shipping things people actually use.', // TODO: personalise
+    'I build AI-powered products end to end — from LLM agents and data-heavy tools to real-time apps people actually use. I care about interfaces that feel fast and code that stays simple.', // TODO: personalise
   yearsOfExperience: 3, // TODO
 }
 

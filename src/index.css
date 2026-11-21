@@ -207,6 +207,8 @@
     background: var(--color-bg);
     color: var(--color-fg);
     -webkit-tap-highlight-color: transparent;
+    /* Never allow sideways scrolling, even while elements animate in from off-screen. */
+    overflow-x: clip;
   }
   body {
     @apply font-sans antialiased;

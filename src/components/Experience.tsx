@@ -11,7 +11,7 @@ export function Experience() {
   const scaleY = useSpring(scrollYProgress, { stiffness: 120, damping: 30 })
 
   return (
-    <section id="experience" className="relative pt-28 pb-16 sm:pt-36 sm:pb-20">
+    <section id="experience" className="relative overflow-x-clip pt-28 pb-16 sm:pt-36 sm:pb-20">
       <div className="container-x">
         <SectionHeading
           title={
