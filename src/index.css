@@ -209,6 +209,11 @@
     -webkit-tap-highlight-color: transparent;
     /* Never allow sideways scrolling, even while elements animate in from off-screen. */
     overflow-x: clip;
+    /* Hide the page scrollbar (the page still scrolls; the top progress bar shows position). */
+    scrollbar-width: none;
+  }
+  html::-webkit-scrollbar {
+    display: none;
   }
   body {
     @apply font-sans antialiased;
