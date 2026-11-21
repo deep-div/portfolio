@@ -77,7 +77,6 @@ function HeroBackground({ mx, my }: { mx: MotionValue<number>; my: MotionValue<n
 
   return (
     <div aria-hidden className="pointer-events-none absolute inset-0">
-      <div className="grid-lines absolute inset-0 [mask-image:radial-gradient(ellipse_70%_60%_at_50%_45%,black_20%,transparent_75%)]" />
       <div className="absolute top-[8%] left-[12%] size-[38vmax] animate-aurora rounded-full bg-glow-1 blur-[110px]" />
       <div className="absolute top-[30%] right-[6%] size-[32vmax] animate-aurora rounded-full bg-glow-2 blur-[120px] [animation-delay:-6s]" />
       <div className="absolute bottom-[-10%] left-[35%] size-[30vmax] animate-aurora rounded-full bg-glow-3 blur-[120px] [animation-delay:-12s]" />

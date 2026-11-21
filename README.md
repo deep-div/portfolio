@@ -15,7 +15,7 @@ npm run build    # production build in dist/
 Open [`src/theme.ts`](src/theme.ts) and change one line:
 
 ```ts
-export const THEME: ThemeName = 'cream-editorial' // or 'minimal-light' or 'midnight'
+export const THEME: ThemeName = 'cream-editorial' // or 'minimal-light', 'wine-rose', 'sage', 'midnight'
 ```
 
 Theme colours live in `src/index.css` under `[data-theme="…"]`.
