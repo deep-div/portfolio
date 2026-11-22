@@ -89,6 +89,70 @@ function HeroBackground({ mx, my }: { mx: MotionValue<number>; my: MotionValue<n
   )
 }
 
+/*
+ * Portrait geometry, as % of the square frame. The disc is centred at
+ * (50%, 61.5%) with a radius of ~38%; the photo is visible everywhere above
+ * the disc's centre line, and below it only inside the disc — so the head
+ * pops out of the circle while the shoulders are cut to its round edge.
+ */
+const PORTRAIT_MASK = {
+  maskImage:
+    'linear-gradient(black, black), radial-gradient(ellipse 38% 37.5% at 50% 61.5%, black 99.2%, transparent 100%)',
+  maskSize: '100% 61.5%, 100% 100%',
+  maskPosition: 'top, center',
+  maskRepeat: 'no-repeat',
+  WebkitMaskImage:
+    'linear-gradient(black, black), radial-gradient(ellipse 38% 37.5% at 50% 61.5%, black 99.2%, transparent 100%)',
+  WebkitMaskSize: '100% 61.5%, 100% 100%',
+  WebkitMaskPosition: 'top, center',
+  WebkitMaskRepeat: 'no-repeat',
+} as const
+
+/**
+ * Cut-out portrait popping out of a soft, theme-coloured disc, with a slow
+ * dashed orbit around it. Sits on the right on large screens, above the text on phones.
+ */
+function Portrait() {
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 30, scale: 0.96, filter: 'blur(10px)' }}
+      animate={{ opacity: 1, y: 0, scale: 1, filter: 'blur(0px)' }}
+      transition={{ duration: 1.2, ease, delay: 0.6 }}
+      className="relative mx-auto aspect-square w-[min(16rem,64vw)] sm:w-80 lg:order-last lg:mr-0 lg:ml-auto lg:w-full lg:max-w-[30rem]"
+    >
+      {/* Accent glow behind everything */}
+      <div aria-hidden className="absolute inset-x-[10%] top-[30%] bottom-0 rounded-full bg-glow-1 blur-3xl" />
+      {/* Slow dashed orbit with a single accent dot */}
+      <div
+        aria-hidden
+        className="absolute inset-x-[5%] top-[17%] bottom-[-6%] animate-[spin_60s_linear_infinite] rounded-full border border-dashed border-line-strong"
+      >
+        <span className="absolute top-[14.6%] left-[14.6%] size-2.5 -translate-1/2 rounded-full bg-accent shadow-[0_0_0_4px_var(--t-bg)]" />
+      </div>
+      {/* The disc */}
+      <div
+        aria-hidden
+        className="absolute inset-x-[12%] top-[24%] bottom-[1%] rounded-full ring-1 ring-line-strong"
+        style={{
+          background:
+            'radial-gradient(circle at 50% 25%, var(--t-surface) 0%, color-mix(in srgb, var(--t-accent) 24%, var(--t-surface-2)) 100%)',
+        }}
+      />
+      <img
+        src={profile.photo}
+        alt={`Portrait of ${profile.name}`}
+        width={900}
+        height={900}
+        decoding="async"
+        fetchPriority="high"
+        draggable={false}
+        className="relative size-full object-contain select-none"
+        style={PORTRAIT_MASK}
+      />
+    </motion.div>
+  )
+}
+
 export function Hero() {
   const ref = useRef<HTMLElement>(null)
   const scrollTo = useScrollTo()
@@ -121,41 +185,48 @@ export function Hero() {
     >
       <HeroBackground mx={mx} my={my} />
 
-      <motion.div style={{ y, opacity, scale }} className="container-x relative z-10 flex flex-col items-center text-center">
-        <h1 className="text-[clamp(3rem,10vw,8rem)] leading-[0.95] font-semibold tracking-[-0.045em]">
-          <motion.span {...item(0.35)} className="block text-[0.42em] font-medium tracking-[-0.02em] text-muted">
-            Hi, I&apos;m
-          </motion.span>
-          <span className="mt-1 block font-serif font-normal tracking-[-0.01em] italic">
-            <GradientLetters text={profile.name} delay={0.5} />
-          </span>
-        </h1>
+      <motion.div
+        style={{ y, opacity, scale }}
+        className="container-x relative z-10 grid items-center gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:gap-8"
+      >
+        <Portrait />
 
-        <motion.p {...item(0.95)} className="mt-7 max-w-2xl text-lg text-balance text-muted sm:text-2xl">
-          {profile.role} crafting <RotatingWord words={profile.rotatingWords} />
-        </motion.p>
+        <div className="flex flex-col items-center text-center lg:items-start lg:text-left">
+          <h1 className="text-[clamp(3rem,9vw,7.5rem)] leading-[0.95] font-semibold tracking-[-0.045em]">
+            <motion.span {...item(0.35)} className="block text-[0.42em] font-medium tracking-[-0.02em] text-muted">
+              Hi, I&apos;m
+            </motion.span>
+            <span className="mt-1 block font-serif font-normal tracking-[-0.01em] italic">
+              <GradientLetters text={profile.name} delay={0.5} />
+            </span>
+          </h1>
 
-        <motion.div {...item(1.1)} className="mt-10 flex items-center gap-2">
-          {[
-            { href: profile.socials.github, label: 'GitHub', Icon: GithubIcon },
-            { href: profile.socials.linkedin, label: 'LinkedIn', Icon: LinkedinIcon },
-            { href: `mailto:${profile.email}`, label: 'Email', Icon: MailIcon },
-          ].map(({ href, label, Icon }) => (
-            <a
-              key={label}
-              href={href}
-              target={href.startsWith('http') ? '_blank' : undefined}
-              rel="noreferrer"
-              aria-label={label}
-              className="group relative grid size-11 place-items-center rounded-full text-muted transition-colors duration-300 hover:bg-wash-strong hover:text-fg"
-            >
-              <Icon width={19} height={19} />
-              <span className="pointer-events-none absolute -bottom-7 text-[11px] opacity-0 transition-all duration-300 group-hover:-bottom-8 group-hover:opacity-100">
-                {label}
-              </span>
-            </a>
-          ))}
-        </motion.div>
+          <motion.p {...item(0.95)} className="mt-7 max-w-2xl text-lg text-balance text-muted sm:text-2xl">
+            {profile.role} crafting <RotatingWord words={profile.rotatingWords} />
+          </motion.p>
+
+          <motion.div {...item(1.1)} className="mt-10 flex items-center gap-2 lg:-ml-2.5">
+            {[
+              { href: profile.socials.github, label: 'GitHub', Icon: GithubIcon },
+              { href: profile.socials.linkedin, label: 'LinkedIn', Icon: LinkedinIcon },
+              { href: `mailto:${profile.email}`, label: 'Email', Icon: MailIcon },
+            ].map(({ href, label, Icon }) => (
+              <a
+                key={label}
+                href={href}
+                target={href.startsWith('http') ? '_blank' : undefined}
+                rel="noreferrer"
+                aria-label={label}
+                className="group relative grid size-11 place-items-center rounded-full text-muted transition-colors duration-300 hover:bg-wash-strong hover:text-fg"
+              >
+                <Icon width={19} height={19} />
+                <span className="pointer-events-none absolute -bottom-7 text-[11px] opacity-0 transition-all duration-300 group-hover:-bottom-8 group-hover:opacity-100">
+                  {label}
+                </span>
+              </a>
+            ))}
+          </motion.div>
+        </div>
       </motion.div>
 
       <motion.button

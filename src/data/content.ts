@@ -44,6 +44,8 @@ export const profile = {
   about:
     'I build AI-powered products end to end — from LLM agents and data-heavy tools to real-time apps people actually use. I care about interfaces that feel fast and code that stays simple.', // TODO: personalise
   yearsOfExperience: 3, // TODO
+  /** Hero portrait — background removed so it sits on every theme. Original: /media/profile.png */
+  photo: '/media/profile.png',
 }
 
 const m = (slug: string, file: string) => `/media/${slug}/${file}`
