@@ -6,6 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="theme-color" content="#ede4d3" />
     <meta name="description" content="Divyanshu — Senior AI Engineer building AI-powered products, from LLM agents to real-time apps." />
+    <!-- Apply the visitor's saved theme before first paint so there's no flash of the default. -->
+    <script>
+      try {
+        var t = localStorage.getItem('portfolio-theme')
+        if (t) document.documentElement.dataset.theme = t
+      } catch (e) {}
+    </script>
     <title>Divyanshu — Senior AI Engineer</title>
   </head>
   <body>

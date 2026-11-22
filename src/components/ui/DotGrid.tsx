@@ -25,7 +25,8 @@ export function DotGrid({ className = '' }: { className?: string }) {
     if (!canvas || !ctx || !host) return
 
     const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches
-    const color = getComputedStyle(canvas).getPropertyValue('--t-fg').trim() || '#000'
+    const readColor = () => getComputedStyle(canvas).getPropertyValue('--t-fg').trim() || '#000'
+    let color = readColor()
 
     let w = 0
     let h = 0
@@ -163,6 +164,13 @@ export function DotGrid({ className = '' }: { className?: string }) {
     ro.observe(canvas)
     resize()
 
+    // Recolour the dots when the visitor switches theme.
+    const mo = new MutationObserver(() => {
+      color = readColor()
+      draw()
+    })
+    mo.observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] })
+
     if (!reduce) {
       host.addEventListener('pointermove', onMove)
       host.addEventListener('pointerleave', onLeave)
@@ -172,6 +180,7 @@ export function DotGrid({ className = '' }: { className?: string }) {
 
     return () => {
       ro.disconnect()
+      mo.disconnect()
       cancelAnimationFrame(raf)
       host.removeEventListener('pointermove', onMove)
       host.removeEventListener('pointerleave', onLeave)

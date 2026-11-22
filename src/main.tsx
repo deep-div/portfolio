@@ -7,9 +7,9 @@ import '@fontsource/instrument-serif/400-italic.css'
 import 'lenis/dist/lenis.css'
 import './index.css'
 import App from './App'
-import { THEME } from './theme'
+import { applyTheme, getInitialTheme } from './theme'
 
-document.documentElement.dataset.theme = THEME
+applyTheme(getInitialTheme())
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>

@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react'
 import { navLinks } from '../data/content'
 import { useScrollTo } from '../lib/smooth-scroll'
 import { ease } from './ui/Reveal'
+import { ThemePicker } from './ThemePicker'
 
 function useActiveSection(ids: readonly string[]) {
   const [active, setActive] = useState<string | null>(null)
@@ -46,7 +47,7 @@ export function Navbar() {
       initial={{ y: -90, opacity: 0 }}
       animate={{ y: hidden ? -90 : 0, opacity: 1 }}
       transition={{ duration: 0.6, ease, delay: hidden ? 0 : 0.1 }}
-      className="fixed inset-x-0 top-4 z-50 flex justify-center px-4"
+      className="fixed inset-x-0 top-4 z-50 flex items-center justify-between gap-1.5 px-4 sm:justify-center sm:px-6 lg:px-8"
     >
       <nav
         aria-label="Primary"
@@ -69,7 +70,7 @@ export function Navbar() {
               }}
               onMouseEnter={() => setHovered(link.id)}
               aria-current={isActive ? 'true' : undefined}
-              className={`relative rounded-full px-3 py-2 text-[13px] font-medium transition-colors duration-300 sm:px-4 sm:text-sm ${
+              className={`relative rounded-full px-2 py-2 text-[13px] font-medium transition-colors duration-300 sm:px-4 sm:text-sm ${
                 isActive ? 'text-fg' : 'text-muted hover:text-fg'
               }`}
             >
@@ -92,6 +93,9 @@ export function Navbar() {
           )
         })}
       </nav>
+      <div className="sm:absolute sm:right-6 lg:right-8">
+        <ThemePicker scrolled={scrolled} />
+      </div>
     </motion.header>
   )
 }
